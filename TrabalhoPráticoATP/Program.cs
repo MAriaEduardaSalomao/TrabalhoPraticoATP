@@ -19,8 +19,7 @@ namespace TrabalhoPráticoATP
 
                 if (peao.Posicao > 0)
                 {
-                    contQntdDisponiveis++;
-                    disponiveis[i] = peao.Id;
+                    //teste
 
                 }
             }
