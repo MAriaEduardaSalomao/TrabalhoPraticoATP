@@ -21,11 +21,7 @@ namespace TrabalhoPráticoATP
 
         }
 
-        public Peao(int[] vetP)
-        {
-            this.vetP = vetP;
-
-        }
+        
 
         public int[] VetP
         {
@@ -55,8 +51,22 @@ namespace TrabalhoPráticoATP
         }
         public void RetornarInicio()
         {
-
-            this.posicao = -this.id;
+            switch (this.cor)
+            {
+                case "Azul":
+                    this.posicao = -1;
+                    break;
+                case "Vermelho":
+                    this.posicao = -2;
+                    break;
+                case "Verde":
+                    this.posicao = -3;
+                    break;
+                case "Amarelo":
+                    this.posicao = -4;
+                    break;
+            }
+            
         }
 
         public void EntrarJogo()
