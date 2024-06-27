@@ -12,7 +12,6 @@ namespace TrabalhoPráticoATP
         private string cor, nome;
         private int id;
         private Peao[] vetPeao = new Peao[4];
-
         Random r = new Random();
         public Jogador(string cor, string nome, int id)
         {
@@ -50,19 +49,19 @@ namespace TrabalhoPráticoATP
             for (int i = 0; i < vetPeao.Length; i++)
             {
 
-                this.vetPeao[i] = new Peao(cor, i + 1, (i + 1) * (-1));
-                switch (i)
+                this.vetPeao[i] = new Peao(cor, (i + 1), (i + 1) * (-1));
+                switch (cor)
                 {
-                    case 0:
+                    case "Azul":
                         this.vetPeao[i].VetP = vetP1Az;
                         break;
-                    case 1:
+                    case "Vermelho":
                         this.vetPeao[i].VetP = vetP2Vm;
                         break;
-                    case 2:
+                    case "Verde":
                         this.vetPeao[i].VetP = vetP3Vd;
                         break;
-                    case 3:
+                    case "Amarelo":
                         this.vetPeao[i].VetP = vetP4Am;
                         break;
                 }

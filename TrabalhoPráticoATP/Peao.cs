@@ -51,12 +51,20 @@ namespace TrabalhoPráticoATP
 
         public void MoverPeao(int dado)
         {
-            posicao += dado;
+            this.posicao += dado;
         }
         public void RetornarInicio()
         {
-            posicao = -id;
+
+            this.posicao = -this.id;
         }
+
+        public void EntrarJogo()
+        {
+            this.posicao = this.vetP[0];
+        }
+
+
 
 
     }

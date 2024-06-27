@@ -9,12 +9,13 @@ namespace TrabalhoPráticoATP
 {
     internal class Tabuleiro
     {
-
+        private int qntJgd;
         private Jogador[] vetJgd = new Jogador[4];
 
-        public Tabuleiro()
+        public Tabuleiro(int qntJgd)
         {
-            for (int i = 0; i < vetJgd.Length; i++)
+            this.qntJgd = qntJgd;
+            for (int i = 0; i < qntJgd; i++)
             {
                 //definição dos objetos jogadores com os nomes, id's e cores
                 Console.WriteLine($"Informe o nome do jogador {i + 1}");
@@ -46,11 +47,10 @@ namespace TrabalhoPráticoATP
 
         public void ImprimeJgd()
         {
-            for (int i = 0; i < vetJgd.Length; i++)
+            for (int i = 0; i < qntJgd; i++)
             {
-                Console.WriteLine("Nome do Jogador: " + vetJgd[i].Nome);
+                Console.WriteLine("\nNome do Jogador: " + vetJgd[i].Nome);
                 Console.WriteLine("Cor do Jogador: " + vetJgd[i].Cor);
-
 
             }
 
