@@ -144,7 +144,7 @@ namespace TrabalhoPráticoATP
             {
                 if (disponiveis[i] > 0)
                 {
-                    Console.Write(disponiveis[i] + " ");
+                    Console.Write($"({disponiveis[i]}) ");
                 }
             }
         }
