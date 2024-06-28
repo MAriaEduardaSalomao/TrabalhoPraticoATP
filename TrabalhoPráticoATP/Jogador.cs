@@ -48,8 +48,23 @@ namespace TrabalhoPráticoATP
             this.id = id;
             for (int i = 0; i < vetPeao.Length; i++)
             {
-
-                this.vetPeao[i] = new Peao(cor, (i + 1), (i + 1) * (-1));
+                int identificador;
+                switch (cor)
+                {
+                    case "Azul":
+                        id = -1;
+                        break;
+                    case "Vermelho":
+                        id = -2;
+                        break;
+                    case "Verde":
+                        id = -3;
+                        break;
+                    case "Amarelo":
+                        id = -4;
+                        break;
+                }
+                this.vetPeao[i] = new Peao(cor, (i + 1), id);
                 switch (cor)
                 {
                     case "Azul":
