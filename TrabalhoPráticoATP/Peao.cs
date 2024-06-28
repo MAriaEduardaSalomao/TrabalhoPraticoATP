@@ -45,9 +45,10 @@ namespace TrabalhoPráticoATP
             set { this.posicao = value; }
         }
 
-        public void MoverPeao(int dado)
+        public void MoverPeao(int dado, int posicao)
         {
-            this.posicao += dado;
+            this.posicao = vetP[posicao+dado];
+            
         }
         public void RetornarInicio()
         {
