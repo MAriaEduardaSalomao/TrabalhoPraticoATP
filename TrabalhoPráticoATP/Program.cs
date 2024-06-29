@@ -69,28 +69,28 @@ namespace TrabalhoPráticoATP
 
             int dado = jogador.LancarDado();
             
-            Console.WriteLine($"\nDado jogado pelo jogador {jogador.Nome}: {dado}\n");
+            Console.WriteLine($"\nDado jogado pelo jogador {jogador.Nome}: {dado}");
 
             if (dado == 6)
             {
+              
                 qntdDisponiveis = PeoesDisponiveisSaida(jogador, disponiveisSaida);
-                while (dado == 6 && qntdDisponiveis > 0)
+                
+                RetiraMaisPeao(jogador, disponiveisSaida, idPeao, tabuleiro, qntJgd, dado);
+                jogador.LancarDado();
+                Console.WriteLine($"\nDado jogado pelo jogador {jogador.Nome}: {dado}");
+                if (dado == 6)
                 {
-                    RetiraMaisPeao(jogador, disponiveisSaida, idPeao, tabuleiro, qntJgd, dado);
-                    jogador.LancarDado();
-                    Console.WriteLine($"\nDado jogado pelo jogador {jogador.Nome}: {dado}\n");
-                    qntdDisponiveis = PeoesDisponiveisSaida(jogador, disponiveisSaida);
-
+                    Console.WriteLine("Quantidade de 6's atingida!\nPassa a vez");
+                }
+                else
+                {
+                    MoverPeao(jogador, idPeao, dado, tabuleiro, qntJgd);
                 }
             }
             else
             {
-                Console.WriteLine($"\nMovimento do jogador {jogador.Nome}");
-                int posicaoPeao = jogador.VetPeao[idPeao - 1].Posicao;
-                int indexPosicao = CompatibilidadePosicaoVetor(idPeao, posicaoPeao, jogador);
-                jogador.VetPeao[idPeao - 1].MoverPeao(dado, indexPosicao);
-                Console.WriteLine($"Posição atual do peão {jogador.Cor}: {jogador.VetPeao[idPeao - 1].Posicao}");
-                VerificaCaptura(jogador, tabuleiro, idPeao, qntJgd);
+                MoverPeao(jogador, idPeao, dado, tabuleiro, qntJgd);
             }
 
         }
@@ -158,26 +158,33 @@ namespace TrabalhoPráticoATP
             {
 
                 int qntdDisponiveis = PeoesDisponiveisSaida(jogador, disponiveisSaida);
-                if (qntdDisponiveis > 0)
-                {
-                    InformeDisponiveis(jogador, disponiveisSaida);
 
-                    idPeao = int.Parse(Console.ReadLine());
-                    Console.WriteLine($"\nMovimento do jogador {jogador.Nome}");
-                    jogador.VetPeao[idPeao - 1].EntrarJogo();
-                    Console.WriteLine($"Posição atual do peão {jogador.Cor}: {jogador.VetPeao[idPeao - 1].Posicao}");
-                    VerificaCaptura(jogador, tabuleiro, idPeao, qntJgd);
+                InformeDisponiveis(jogador, disponiveisSaida);
+
+                idPeao = int.Parse(Console.ReadLine());
+                Console.WriteLine($"\nMovimento do jogador {jogador.Nome}");
+                jogador.VetPeao[idPeao - 1].EntrarJogo();
+                Console.WriteLine($"\nPosição atual do peão {jogador.VetPeao[idPeao - 1].Id} {jogador.Cor} : {jogador.VetPeao[idPeao - 1].Posicao}");
+                VerificaCaptura(jogador, tabuleiro, idPeao, qntJgd);
+                jogador.LancarDado();
+                if (dado == 6)
+                {
+                   
+                        RetiraMaisPeao(jogador, disponiveisSaida, idPeao, tabuleiro, qntJgd, dado);
+                        jogador.LancarDado();
+                        Console.WriteLine($"\nDado jogado pelo jogador {jogador.Nome}: {dado}");
+                        
 
                 }
                 else
                 {
-                    Console.WriteLine("Todos os peões já foram retirados");
+                    MoverPeao(jogador, idPeao, dado, tabuleiro, qntJgd);
                 }
-
 
             }
             else if (resposta == 'n')
             {
+
                 for (int j = 0; j < jogador.VetPeao.Length; j++)
                 {
                     if (disponiveis[j] > 0)
@@ -186,12 +193,7 @@ namespace TrabalhoPráticoATP
                         idPeao = disponiveis[j];
                     }
                 }
-                Console.WriteLine($"\nMovimento do jogador {jogador.Nome}");
-                int posicaoPeao = jogador.VetPeao[idPeao - 1].Posicao;
-                int indexPosicao = CompatibilidadePosicaoVetor(idPeao, posicaoPeao, jogador);
-                jogador.VetPeao[idPeao - 1].MoverPeao(dado, indexPosicao);
-                Console.WriteLine($"Posição atual do peão {jogador.Cor}: {jogador.VetPeao[idPeao - 1].Posicao}");
-                VerificaCaptura(jogador, tabuleiro, idPeao, qntJgd);
+                MoverPeao(jogador, idPeao, dado, tabuleiro, qntJgd);
 
             }
             else
@@ -199,6 +201,18 @@ namespace TrabalhoPráticoATP
                 Console.WriteLine("Valor informado incorreto");
             }
         }
+
+
+        static void MoverPeao(Jogador jogador, int idPeao, int dado, Tabuleiro tabuleiro, int qntJgd)
+        {
+            Console.WriteLine($"\nMovimento do jogador {jogador.Nome}");
+            int posicaoPeao = jogador.VetPeao[idPeao - 1].Posicao;
+            int indexPosicao = CompatibilidadePosicaoVetor(idPeao, posicaoPeao, jogador);
+            jogador.VetPeao[idPeao - 1].MoverPeao(dado, indexPosicao);
+            Console.WriteLine($"\nPosição atual do peão {jogador.VetPeao[idPeao - 1].Id} {jogador.Cor} : {jogador.VetPeao[idPeao - 1].Posicao}");
+            VerificaCaptura(jogador, tabuleiro, idPeao, qntJgd);
+        }
+
 
         static bool RetiraMaisPeao(Jogador jogador, int[] disponiveisSaida, int idPeao, Tabuleiro tabuleiro, int qntJgd, int dado)
         {
@@ -214,7 +228,7 @@ namespace TrabalhoPráticoATP
                 idPeao = int.Parse(Console.ReadLine());
                 Console.WriteLine($"\nMovimento do jogador {jogador.Nome}");
                 jogador.VetPeao[idPeao - 1].EntrarJogo();
-                Console.WriteLine($"Posição atual do peão {jogador.Cor}: {jogador.VetPeao[idPeao - 1].Posicao}");
+                Console.WriteLine($"\nPosição atual do peão {jogador.VetPeao[idPeao - 1].Id} {jogador.Cor} : {jogador.VetPeao[idPeao - 1].Posicao}");
                 //VerificaCasaSegura()
                 VerificaCaptura(jogador, tabuleiro, idPeao, qntJgd);
                 return true;
@@ -222,12 +236,7 @@ namespace TrabalhoPráticoATP
             }
             else if (resposta == 'n')
             {
-                Console.WriteLine($"\nMovimento do jogador {jogador.Nome}");
-                int posicaoPeao = jogador.VetPeao[idPeao - 1].Posicao;
-                int indexPosicao = CompatibilidadePosicaoVetor(idPeao, posicaoPeao, jogador);
-                jogador.VetPeao[idPeao - 1].MoverPeao(dado,indexPosicao);
-                Console.WriteLine($"Posição atual do peão {jogador.Cor}: {jogador.VetPeao[idPeao - 1].Posicao}");
-                VerificaCaptura(jogador, tabuleiro, idPeao, qntJgd);
+                MoverPeao(jogador, idPeao, dado, tabuleiro, qntJgd);
                 return false;
             }
             else
@@ -244,7 +253,7 @@ namespace TrabalhoPráticoATP
                 Jogador jgds = tabuleiro.VetJgd[i];
                 for (int j = 0; j < jogador.VetPeao.Length; j++)
                 {
-                    Peao peaoRef = jogador.VetPeao[idPeao];
+                    Peao peaoRef = jogador.VetPeao[idPeao - 1];
 
                     Peao peaoComparar = jgds.VetPeao[j];
                     if (peaoRef.Cor != peaoComparar.Cor)
@@ -280,30 +289,37 @@ namespace TrabalhoPráticoATP
             
         }
 
-        static void UmPeaoDadoMenosSeis(int idPeao, Jogador jogador, int[] disponiveis, int dado, StreamWriter arq)
+        static void UmPeaoDadoMenosSeis(int idPeao, Jogador jogador, int[] disponiveis, int dado)
         {
             Console.WriteLine($"\nMovimento do jogador {jogador.Nome}");
-            arq.WriteLine($"\nMovimento do jogador {jogador.Nome}");
+            
             for (int j = 0; j < jogador.VetPeao.Length; j++)
             {
                 if (disponiveis[j] > 0)
                 {
                     Console.Write("Peão disponível:" + disponiveis[j]);
-                    arq.Write("Peão disponível:" + disponiveis[j]);
+                   
                     idPeao = disponiveis[j];
                 }
             }
             int posicaoPeao = jogador.VetPeao[idPeao - 1].Posicao;
             int indexPosicao = CompatibilidadePosicaoVetor(idPeao, posicaoPeao, jogador);
             jogador.VetPeao[idPeao - 1].MoverPeao(dado, indexPosicao);
-            Console.WriteLine($"\nPosição atual do peão {jogador.Cor}: {jogador.VetPeao[idPeao - 1].Posicao}");
-            arq.WriteLine($"\nPosição atual do peão {jogador.Cor}: {jogador.VetPeao[idPeao - 1].Posicao}");
+            Console.WriteLine($"\nPosição atual do peão {jogador.VetPeao[idPeao - 1].Id} {jogador.Cor} : {jogador.VetPeao[idPeao - 1].Posicao}");
+            
+
+        }
+
+        static void MaisDeUmPeao()
+        {
 
         }
 
 
-        static void VerificaCapturaECasaSegura(int[] casasSeguras, Jogador jogador, int idPeao, Tabuleiro tabuleiro, int qntJgd, int dado,StreamWriter arq, int[] disponiveis)
+
+        static void VerificaCapturaECasaSegura(int[] casasSeguras, Jogador jogador, int idPeao, Tabuleiro tabuleiro, int qntJgd, int dado,StreamWriter arq, int[] disponiveis, int[] disponiveisSaida)
         {
+            int contQntdDisponiveis = PeoesDisponiveis(jogador, disponiveis);
             if (VerificaCasaSegura(casasSeguras, jogador, idPeao))
             {
 
@@ -313,19 +329,22 @@ namespace TrabalhoPráticoATP
                 if (VerificaCaptura(jogador, tabuleiro, idPeao, qntJgd))
                 {
                     jogador.LancarDado();
-                    Console.WriteLine($"\nDado jogado pelo jogador {jogador.Nome}: {dado}\n");
-                    
-                    UmPeaoDadoMenosSeis(idPeao, jogador, disponiveis, dado, arq);
+                    Console.WriteLine($"\nDado jogado pelo jogador {jogador.Nome}: {dado}");
+                    if (dado==6&& contQntdDisponiveis == 1)
+                    {
+                        UmPeaoDadoMenosSeis(idPeao, jogador, disponiveis, dado);
+                    }else if (contQntdDisponiveis ==1 && dado==6)
+                    {
+                        SaidaNaoObrigatoria(jogador, disponiveis, disponiveisSaida, dado, tabuleiro, qntJgd);
+                    }
                 }
+                   
             }
         }
         static void Main(string[] args)
         {
             
-            try
-            {
-                StreamWriter arq = new StreamWriter("log.txt", false, Encoding.UTF8);
-
+            
                 int contQntdDisponiveisSaida = 0, contQntdDisponiveis = 0;
                 int[] disponiveis = new int[4];
                 int[] disponiveisSaida = new int[4];
@@ -347,7 +366,7 @@ namespace TrabalhoPráticoATP
                     {
 
                         Console.WriteLine($"-----------Rodada:{rodada}-----------");
-                        arq.WriteLine($"-----------Rodada:{rodada}-----------");
+                        //arq.WriteLine($"-----------Rodada:{rodada}-----------");
 
                         Console.WriteLine();
 
@@ -358,54 +377,40 @@ namespace TrabalhoPráticoATP
                             Jogador jogador = tabuleiro.VetJgd[i];
                             int idPeao = 0;
                             int dado = jogador.LancarDado();
-                            Console.WriteLine($"\nDado jogado pelo jogador {jogador.Nome}: {dado}\n");
-                            arq.WriteLine($"\nDado jogado pelo jogador {jogador.Nome}: {dado}\n");
+                            Console.WriteLine($"\nDado jogado pelo jogador {jogador.Nome}: {dado}");
+                            //arq.WriteLine($"\nDado jogado pelo jogador {jogador.Nome}: {dado}\n");
 
                             contQntdDisponiveisSaida = PeoesDisponiveisSaida(jogador, disponiveis);
                             contQntdDisponiveis = PeoesDisponiveis(jogador, disponiveis);
 
                             if (dado == 6 && contQntdDisponiveisSaida == 4)
                             {
-                                Console.WriteLine("\nVez de: " + jogador.Nome + "\n");
-                                arq.WriteLine("\nVez de: " + jogador.Nome + "\n");
+                                Console.WriteLine($"\nVez de: {jogador.Nome}");
+                                //arq.WriteLine("\nVez de: " + jogador.Nome + "\n");
 
                                 SaidaJogador(jogador, disponiveis, disponiveisSaida, tabuleiro, qntJgd);
 
                             }
                             else if (contQntdDisponiveis == 1 && dado < 6)
                             {
-                                Console.WriteLine($"\nMovimento do jogador {jogador.Nome}");
-                                arq.WriteLine($"\nMovimento do jogador {jogador.Nome}");
-                                for (int j = 0; j < jogador.VetPeao.Length; j++)
-                                {
-                                    if (disponiveis[j] > 0)
-                                    {
-                                        Console.Write("Peão disponível:" + disponiveis[j]);
-                                        arq.Write("Peão disponível:" + disponiveis[j]);
-                                        idPeao = disponiveis[j];
-                                    }
-                                }
-                                int posicaoPeao = jogador.VetPeao[idPeao - 1].Posicao;
-                                int indexPosicao = CompatibilidadePosicaoVetor(idPeao, posicaoPeao, jogador);
-                                jogador.VetPeao[idPeao - 1].MoverPeao(dado, indexPosicao);
-                                Console.WriteLine($"\nPosição atual do peão {jogador.Cor}: {jogador.VetPeao[idPeao - 1].Posicao}");
-                                arq.WriteLine($"\nPosição atual do peão {jogador.Cor}: {jogador.VetPeao[idPeao - 1].Posicao}");
-                                if(VerificaCasaSegura(casasSeguras, jogador, idPeao))
-                                {
-
-                                }
-                                else
-                                {
-                                    if (VerificaCaptura(jogador, tabuleiro, idPeao, qntJgd))
-                                    {
-                                        jogador.LancarDado();
-                                        Console.WriteLine($"\nDado jogado pelo jogador {jogador.Nome}: {dado}\n");
-                                        //if (dado ==6)
-                                        //{
-
-                                        //}
-                                    }
-                                }
+                                UmPeaoDadoMenosSeis(idPeao, jogador, disponiveis, dado);
+                                //Console.WriteLine($"\nMovimento do jogador {jogador.Nome}");
+                                ////arq.WriteLine($"\nMovimento do jogador {jogador.Nome}");
+                                //for (int j = 0; j < jogador.VetPeao.Length; j++)
+                                //{
+                                //    if (disponiveis[j] > 0)
+                                //    {
+                                //        Console.Write("Peão disponível:" + disponiveis[j]);
+                                //        //arq.Write("Peão disponível:" + disponiveis[j]);
+                                //        idPeao = disponiveis[j];
+                                //    }
+                                //}
+                                //int posicaoPeao = jogador.VetPeao[idPeao - 1].Posicao;
+                                //int indexPosicao = CompatibilidadePosicaoVetor(idPeao, posicaoPeao, jogador);
+                                //jogador.VetPeao[idPeao - 1].MoverPeao(dado, indexPosicao);
+                                //Console.WriteLine($"\nPosição atual do peão {jogador.VetPeao[idPeao - 1].Id} {jogador.Cor} : {jogador.VetPeao[idPeao - 1].Posicao}");
+                                //arq.WriteLine($"\nPosição atual do peão {jogador.Cor}: {jogador.VetPeao[idPeao - 1].Posicao}");
+                                
                             }
                             else if (contQntdDisponiveis == 1 && dado == 6)
                             {
@@ -413,51 +418,68 @@ namespace TrabalhoPráticoATP
                             }
                             else if (contQntdDisponiveis > 1)
                             {
-                                Console.WriteLine($"\nMovimento do jogador {jogador.Nome}");
-                                arq.WriteLine($"\nMovimento do jogador {jogador.Nome}");
+                                contQntdDisponiveis = PeoesDisponiveis(jogador,disponiveis);
                                 InformeDisponiveis(jogador, disponiveis);
                                 idPeao = int.Parse(Console.ReadLine());
-                                int posicaoPeao = jogador.VetPeao[idPeao - 1].Posicao;
+                                Console.WriteLine($"\nMovimento do jogador {jogador.Nome}");
+                                //arq.WriteLine($"\nMovimento do jogador {jogador.Nome}");
+                                int posicaoPeao = jogador.VetPeao[idPeao - 1].Posicao;        //
                                 int indexPosicao = CompatibilidadePosicaoVetor(idPeao, posicaoPeao, jogador);
-                                jogador.VetPeao[idPeao - 1].MoverPeao(dado, indexPosicao);
-                                Console.WriteLine($"Posição atual do peão {jogador.Cor}: {jogador.VetPeao[idPeao - 1].Posicao}");
-                                arq.WriteLine($"Posição atual do peão {jogador.Cor}: {jogador.VetPeao[idPeao - 1].Posicao}");
-                                if (VerificaCasaSegura(casasSeguras, jogador, idPeao))
+                                if (indexPosicao > 50)
                                 {
-                                    
+                                    if (dado <= (jogador.VetPeao[idPeao].vetP.Length - indexPosicao))
+                                    {
+                                        Console.WriteLine($"Reta Final pra jogador {jogador.Nome}");
+                                        contQntdDisponiveis = PeoesDisponiveis(jogador, disponiveis);
+                                        InformeDisponiveis(jogador, disponiveis);
+                                        idPeao = int.Parse(Console.ReadLine());
+                                        jogador.VetPeao[idPeao - 1].MoverPeao(dado, indexPosicao);
+                                        Console.WriteLine($"\nPosição atual do peão {jogador.VetPeao[idPeao - 1].Id} {jogador.Cor} : {jogador.VetPeao[idPeao - 1].Posicao}");
+                                    }
                                 }
                                 else
                                 {
-                                    if (VerificaCaptura(jogador, tabuleiro, idPeao, qntJgd))
+                                    jogador.VetPeao[idPeao - 1].MoverPeao(dado, indexPosicao);
+                                    Console.WriteLine($"\nPosição atual do peão {jogador.VetPeao[idPeao - 1].Id} {jogador.Cor} : {jogador.VetPeao[idPeao - 1].Posicao}");
+                                    //arq.WriteLine($"Posição atual do peão {jogador.Cor}: {jogador.VetPeao[idPeao - 1].Posicao}");
+                                    if (VerificaCasaSegura(casasSeguras, jogador, idPeao))
                                     {
-                                        jogador.LancarDado();
-                                        contQntdDisponiveis = PeoesDisponiveis(jogador, disponiveis);
-                                        if (contQntdDisponiveis == 1 && dado == 6)
-                                        {
-                                            Console.WriteLine($"\nMovimento do jogador {jogador.Nome}");
-                                            arq.WriteLine($"\nMovimento do jogador {jogador.Nome}");
-                                            for (int j = 0; j < jogador.VetPeao.Length; j++)
-                                            {
-                                                if (disponiveis[j] > 0)
-                                                {
-                                                    Console.Write("Peão disponível:" + disponiveis[j]);
-                                                    arq.Write("Peão disponível:" + disponiveis[j]);
-                                                    idPeao = disponiveis[j];
-                                                }
-                                            }
-                                            posicaoPeao = jogador.VetPeao[idPeao - 1].Posicao;
-                                            indexPosicao = CompatibilidadePosicaoVetor(idPeao, posicaoPeao, jogador);
-                                            jogador.VetPeao[idPeao - 1].MoverPeao(dado, indexPosicao);
-                                            Console.WriteLine($"\nPosição atual do peão {jogador.Cor}: {jogador.VetPeao[idPeao - 1].Posicao}");
-                                            arq.WriteLine($"\nPosição atual do peão {jogador.Cor}: {jogador.VetPeao[idPeao - 1].Posicao}");
-                                            if (VerificaCasaSegura(casasSeguras, jogador, idPeao))
-                                            {
-
-                                            }
-                                        }
 
                                     }
+                                    else
+                                    {
+                                        if (VerificaCaptura(jogador, tabuleiro, idPeao, qntJgd))
+                                        {
+                                            jogador.LancarDado();
+                                            contQntdDisponiveis = PeoesDisponiveis(jogador, disponiveis);
+                                            if (contQntdDisponiveis == 1 && dado == 6)
+                                            {
+                                                Console.WriteLine($"\nMovimento do jogador {jogador.Nome}");
+                                                //arq.WriteLine($"\nMovimento do jogador {jogador.Nome}");
+                                                for (int j = 0; j < jogador.VetPeao.Length; j++)
+                                                {
+                                                    if (disponiveis[j] > 0)
+                                                    {
+                                                        Console.Write("Peão disponível:" + disponiveis[j]);
+                                                        //arq.Write("Peão disponível:" + disponiveis[j]);
+                                                        idPeao = disponiveis[j];
+                                                    }
+                                                }
+                                                posicaoPeao = jogador.VetPeao[idPeao - 1].Posicao;
+                                                indexPosicao = CompatibilidadePosicaoVetor(idPeao, posicaoPeao, jogador);
+                                                jogador.VetPeao[idPeao - 1].MoverPeao(dado, indexPosicao);
+                                                Console.WriteLine($"\nPosição atual do peão {jogador.VetPeao[idPeao - 1].Id} {jogador.Cor} : {jogador.VetPeao[idPeao - 1].Posicao}");
+                                                //arq.WriteLine($"\nPosição atual do peão {jogador.Cor}: {jogador.VetPeao[idPeao - 1].Posicao}");
+                                                if (VerificaCasaSegura(casasSeguras, jogador, idPeao))
+                                                {
+                                                    
+                                                }
+                                            }
+
+                                        }
+                                    }
                                 }
+                                
 
 
                             }
@@ -472,13 +494,9 @@ namespace TrabalhoPráticoATP
                 }
 
 
-                arq.Close();
+                
 
-            }
-            catch (Exception e) 
-            {
-                Console.WriteLine("Excepction: " + e.Message);
-            }
+            
             
 
             Console.ReadLine();
