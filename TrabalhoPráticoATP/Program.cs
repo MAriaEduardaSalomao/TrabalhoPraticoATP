@@ -363,9 +363,17 @@ namespace TrabalhoPráticoATP
 
         }
 
-        
 
-        
+        static void MaisDeUmPeaoDadoSeis(Jogador jogador, int contQntdDisponiveis, int idPeao, int dado, int[] disponiveis)
+        {
+            contQntdDisponiveis = PeoesDisponiveis(jogador, disponiveis);
+            idPeao = InformeDisponiveisEId(jogador, disponiveis);
+
+            MoverPeao(jogador, idPeao, dado);
+
+        }
+
+
 
         static void Jogo(Jogador jogador,Tabuleiro tabuleiro, int[] disponiveis, int[] disponiveisSaida, int dado, int contQntdDisponiveis, int contQntdDisponiveisSaida,)
         {
@@ -390,12 +398,12 @@ namespace TrabalhoPráticoATP
             else if (contQntdDisponiveis > 1)
             {
                 contQntdDisponiveis = PeoesDisponiveis(jogador, disponiveis);
-                InformeDisponiveis(jogador, disponiveis);
-                idPeao = int.Parse(Console.ReadLine());
+                idPeao=InformeDisponiveis(jogador, disponiveis);
+                
                 Console.WriteLine($"\nMovimento do jogador {jogador.Nome}");
 
                 int posicaoPeao = jogador.VetPeao[idPeao - 1].Posicao;
-                int indexPosicao = CompatibilidadePosicaoVetor(idPeao, posicaoPeao, jogador);
+                int indexPosicao = IndexVetor(idPeao, posicaoPeao, jogador);
 
                 if (indexPosicao > 50)
                 {
@@ -469,7 +477,7 @@ namespace TrabalhoPráticoATP
                             if (dado == 6 && contQntdDisponiveisSaida == 4)
                             {
                                 Console.WriteLine($"\nVez de: {jogador.Nome}");
-                                //arq.WriteLine("\nVez de: " + jogador.Nome + "\n");
+                                
 
                                 SaidaJogador(jogador, disponiveis, disponiveisSaida, tabuleiro, qntJgd);
                             while (VerificaCapturaECasaSegura(casasSeguras, jogador, idPeao, tabuleiro, qntJgd))
@@ -500,7 +508,7 @@ namespace TrabalhoPráticoATP
                                     Console.WriteLine($"\nMovimento do jogador {jogador.Nome}");
 
                                     int posicaoPeao = jogador.VetPeao[idPeao - 1].Posicao;
-                                    int indexPosicao = CompatibilidadePosicaoVetor(idPeao, posicaoPeao, jogador);
+                                    int indexPosicao = IndexVetor(idPeao, posicaoPeao, jogador);
 
                                     if (indexPosicao > 50)
                                     {
