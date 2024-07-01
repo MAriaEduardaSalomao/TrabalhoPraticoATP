@@ -14,7 +14,40 @@ namespace TrabalhoPráticoATP
     internal class Program
     {
 
-        static int PeoesDisponiveis(Jogador jogador, int[] disponiveis)
+        //static int chamaMetodos(Jogador jogador, int[] disponiveis, int[] disponiveisSaida, int idPeao, int posicao, Tabuleiro tabuleiro, int qntJgd, int dado, int[] casasSeguras, int contQntdDisponiveis, int contQntdDisponiveisSaida)
+        //{
+
+
+
+
+
+        //    PeoesDisponiveis(Jogador jogador, int[] disponiveis);
+        //    PeoesDisponiveisSaida(Jogador jogador, int[] disponiveisSaida);
+        //    IndexVetor(int idPeao, int posicao, Jogador jogador);
+        //    Vitoria(Tabuleiro tabuleiro, int qntJgd);
+        //    InformeDisponiveisEId(Jogador jogador, int[] disponiveis);
+        //    EntrarJogo(Jogador jogador, int idPeao);
+        //    MoverPeao(Jogador jogador, int idPeao, int dado);
+        //    SaidaJogador(Jogador jogador, int[] disponiveis, int[] disponiveisSaida, Tabuleiro tabuleiro, int qntJgd);
+        //    RetiraMaisPeao(Jogador jogador, int[] disponiveisSaida, int idPeao, int dado);
+        //    VerificaCaptura(Jogador jogador, Tabuleiro tabuleiro, int idPeao, int qntJgd);
+        //    VerificaCasaSegura(int[] casasSeguras, Jogador jogador, int idPeao);
+        //    VerificaCapturaECasaSegura(int[] casasSeguras, Jogador jogador, int idPeao, Tabuleiro tabuleiro, int qntJgd);
+        //    UmPeaoDadoSeis(Jogador jogador, int[] disponiveis, int[] disponiveisSaida, int dado, Tabuleiro tabuleiro, int qntJgd);
+        //    UmPeaoDadoMenosSeis(int idPeao, Jogador jogador, int[] disponiveis, int dado);
+        //    MaisDeUmPeaoDadoMenosSeis(Jogador jogador, int contQntdDisponiveis, int idPeao, int dado, int[] disponiveis);
+        //    Jogo(Jogador jogador, Tabuleiro tabuleiro, int[] disponiveis, int[] disponiveisSaida, int dado, int contQntdDisponiveis, int contQntdDisponiveisSaida,);
+        //    RetaFinal(Jogador jogador, int dado, int idPeao, int indexPosicao, int contQntdDisponiveis, int[] disponiveis);
+
+        // (Jogador jogador, int indexPosicao, int[] disponiveis, int[] disponiveisSaida, int idPeao, int posicao, Tabuleiro tabuleiro, int qntJgd, int dado, int[] casasSeguras, int contQntdDisponiveis, int contQntdDisponiveisSaida)
+
+
+        //}
+
+
+
+
+        static int PeoesDisponiveis(Jogador jogador, int[] disponiveis, int[] disponiveisSaida, int idPeao, int posicao, Tabuleiro tabuleiro, int qntJgd, int dado, int[] casasSeguras, int contQntdDisponiveisSaida)
         {
             int contQntdDisponiveis = 0;
             for(int i = 0; i < disponiveis.Length; i++)
@@ -36,7 +69,7 @@ namespace TrabalhoPráticoATP
             return contQntdDisponiveis;
         }
 
-        static int PeoesDisponiveisSaida(Jogador jogador, int[] disponiveisSaida)
+        static int PeoesDisponiveisSaida(Jogador jogador, int[] disponiveis, int[] disponiveisSaida, int idPeao, int posicao, Tabuleiro tabuleiro, int qntJgd, int dado, int[] casasSeguras, int contQntdDisponiveisSaida)
         {
             int contQntdDisponiveis = 0;
             for (int i = 0; i < disponiveisSaida.Length; i++)
@@ -58,7 +91,7 @@ namespace TrabalhoPráticoATP
             return contQntdDisponiveis;
         }
 
-        static int IndexVetor(int idPeao, int posicao, Jogador jogador)
+        static int IndexVetor(Jogador jogador, int[] disponiveis, int[] disponiveisSaida, int idPeao, int posicao, Tabuleiro tabuleiro, int qntJgd, int dado, int[] casasSeguras, int contQntdDisponiveis, int contQntdDisponiveisSaida)
         {
             for (int i = 0; i < jogador.VetPeao[idPeao - 1].vetP.Length; i++)
             {
@@ -72,7 +105,7 @@ namespace TrabalhoPráticoATP
 
         }
 
-        static bool Vitoria(Tabuleiro tabuleiro, int qntJgd)
+        static bool Vitoria(Jogador jogador, int[] disponiveis, int[] disponiveisSaida, int idPeao, int posicao, Tabuleiro tabuleiro, int qntJgd, int dado, int[] casasSeguras, int contQntdDisponiveis, int contQntdDisponiveisSaida)
         {
 
             for (int i = 0; i < qntJgd; i++)
@@ -101,7 +134,7 @@ namespace TrabalhoPráticoATP
 
         }
 
-        static int InformeDisponiveisEId(Jogador jogador, int[] disponiveis)
+        static int InformeDisponiveisEId(Jogador jogador, int[] disponiveis, int[] disponiveisSaida, int posicao, Tabuleiro tabuleiro, int qntJgd, int dado, int[] casasSeguras, int contQntdDisponiveis, int contQntdDisponiveisSaida)
         {
             Console.WriteLine("Informe o número do peão que deseja mover\nNúmeros Disponíveis:");
             for (int i = 0; i < jogador.VetPeao.Length; i++)
@@ -114,33 +147,33 @@ namespace TrabalhoPráticoATP
             int idPeao=int.Parse(Console.ReadLine());
         }
 
-        static void EntrarJogo(Jogador jogador, int idPeao)
+        static void EntrarJogo(Jogador jogador, int[] disponiveis, int[] disponiveisSaida, int idPeao, int posicao, Tabuleiro tabuleiro, int qntJgd, int dado, int[] casasSeguras, int contQntdDisponiveis, int contQntdDisponiveisSaida)
         {
             Console.WriteLine($"\nMovimento do jogador {jogador.Nome}");
             jogador.VetPeao[idPeao - 1].EntrarJogo();
             Console.WriteLine($"\nPosição atual do peão {jogador.VetPeao[idPeao - 1].Id} {jogador.Cor} : {jogador.VetPeao[idPeao - 1].Posicao}");
-            VerificaCapturaECasaSegura();
+            VerificaCapturaECasaSegura(Jogador jogador, int indexPosicao, int[] disponiveis, int[] disponiveisSaida, int idPeao, int posicao, Tabuleiro tabuleiro, int qntJgd, int dado, int[] casasSeguras, int contQntdDisponiveis, int contQntdDisponiveisSaida);
 
         }
 
-        static void MoverPeao(Jogador jogador, int idPeao, int dado)
+        static void MoverPeao(Jogador jogador, int[] disponiveis, int[] disponiveisSaida, int idPeao, int posicao, Tabuleiro tabuleiro, int qntJgd, int dado, int[] casasSeguras, int contQntdDisponiveis, int contQntdDisponiveisSaida)
         {
             Console.WriteLine($"\nMovimento do jogador {jogador.Nome}");
             int posicaoPeao = jogador.VetPeao[idPeao - 1].Posicao;
-            int indexPosicao = IndexVetor(idPeao, posicaoPeao, jogador);
-            jogador.VetPeao[idPeao - 1].MoverPeao(dado, indexPosicao);
+            int indexPosicao = IndexVetor(Jogador jogador, int indexPosicao, int[] disponiveis, int[] disponiveisSaida, int idPeao, int posicao, Tabuleiro tabuleiro, int qntJgd, int dado, int[] casasSeguras, int contQntdDisponiveis, int contQntdDisponiveisSaida);
+            jogador.VetPeao[idPeao - 1].MoverPeao(Jogador jogador, int indexPosicao, int[] disponiveis, int[] disponiveisSaida, int idPeao, int posicao, Tabuleiro tabuleiro, int qntJgd, int dado, int[] casasSeguras, int contQntdDisponiveis, int contQntdDisponiveisSaida);
             Console.WriteLine($"\nPosição atual do peão {jogador.VetPeao[idPeao - 1].Id} {jogador.Cor} : {jogador.VetPeao[idPeao - 1].Posicao}");
-            VerificaCapturaECasaSegura();
+            VerificaCapturaECasaSegura(Jogador jogador, int indexPosicao, int[] disponiveis, int[] disponiveisSaida, int idPeao, int posicao, Tabuleiro tabuleiro, int qntJgd, int dado, int[] casasSeguras, int contQntdDisponiveis, int contQntdDisponiveisSaida);
         }
 
 
-        static void SaidaJogador(Jogador jogador, int[] disponiveis, int[] disponiveisSaida, Tabuleiro tabuleiro,int qntJgd)
+        static void SaidaJogador(Jogador jogador, int[] disponiveis, int[] disponiveisSaida, int posicao, Tabuleiro tabuleiro, int qntJgd, int[] casasSeguras, int contQntdDisponiveis, int contQntdDisponiveisSaida)
         {
-            int qntdDisponiveis = PeoesDisponiveisSaida(jogador, disponiveisSaida);
-            int idPeao= InformeDisponiveisEId(jogador, disponiveisSaida);
+            int qntdDisponiveis = PeoesDisponiveisSaida(Jogador jogador, int indexPosicao, int[] disponiveis, int[] disponiveisSaida, int idPeao, int posicao, Tabuleiro tabuleiro, int qntJgd, int dado, int[] casasSeguras, int contQntdDisponiveis, int contQntdDisponiveisSaida);
+            int idPeao= InformeDisponiveisEId(Jogador jogador, int indexPosicao, int[] disponiveis, int[] disponiveisSaida, int idPeao, int posicao, Tabuleiro tabuleiro, int qntJgd, int dado, int[] casasSeguras, int contQntdDisponiveis, int contQntdDisponiveisSaida);
             //int idPeao = int.Parse(Console.ReadLine());
 
-            EntrarJogo(jogador, idPeao);
+            EntrarJogo(Jogador jogador, int indexPosicao, int[] disponiveis, int[] disponiveisSaida, int idPeao, int posicao, Tabuleiro tabuleiro, int qntJgd, int dado, int[] casasSeguras, int contQntdDisponiveis, int contQntdDisponiveisSaida);
             
             int dado = jogador.LancarDado();   
             Console.WriteLine($"\nDado jogado pelo jogador {jogador.Nome}: {dado}");
@@ -148,7 +181,7 @@ namespace TrabalhoPráticoATP
             if (dado == 6)
             {
               
-                qntdDisponiveis = PeoesDisponiveisSaida(jogador, disponiveisSaida);
+                qntdDisponiveis = PeoesDisponiveisSaida(Jogador jogador, int indexPosicao, int[] disponiveis, int[] disponiveisSaida, int idPeao, int posicao, Tabuleiro tabuleiro, int qntJgd, int dado, int[] casasSeguras, int contQntdDisponiveis, int contQntdDisponiveisSaida);
                 
                 RetiraMaisPeao(jogador, disponiveisSaida, idPeao, tabuleiro, qntJgd, dado);
                 jogador.LancarDado();
@@ -159,34 +192,34 @@ namespace TrabalhoPráticoATP
                 }
                 else
                 {
-                    MoverPeao(jogador, idPeao, dado);
+                    MoverPeao(Jogador jogador, int indexPosicao, int[] disponiveis, int[] disponiveisSaida, int idPeao, int posicao, Tabuleiro tabuleiro, int qntJgd, int dado, int[] casasSeguras, int contQntdDisponiveis, int contQntdDisponiveisSaida, jogador, idPeao, dado);
                    
                 }
             }
             else
             {
-                MoverPeao(jogador, idPeao, dado);
+                MoverPeao(Jogador jogador, int indexPosicao, int[] disponiveis, int[] disponiveisSaida, int idPeao, int posicao, Tabuleiro tabuleiro, int qntJgd, int dado, int[] casasSeguras, int contQntdDisponiveis, int contQntdDisponiveisSaida, jogador, idPeao, dado);
                
             }
 
         }
 
-        static void RetiraMaisPeao(Jogador jogador, int[] disponiveisSaida, int idPeao, int dado)
+        static void RetiraMaisPeao(Jogador jogador, int[] disponiveis, int[] disponiveisSaida, int idPeao, int posicao, Tabuleiro tabuleiro, int qntJgd, int dado, int[] casasSeguras, int contQntdDisponiveis, int contQntdDisponiveisSaida)
         {
             Console.WriteLine("\nDeseja retirar mais algum peão da casa? Digite 's' ou 'n':");
             char resposta = char.Parse(Console.ReadLine());
             if (resposta == 's')
             {
-                int qntdDisponiveis = PeoesDisponiveisSaida(jogador, disponiveisSaida);
+                int qntdDisponiveis = PeoesDisponiveisSaida(Jogador jogador, int indexPosicao, int[] disponiveis, int[] disponiveisSaida, int idPeao, int posicao, Tabuleiro tabuleiro, int qntJgd, int dado, int[] casasSeguras, int contQntdDisponiveis, int contQntdDisponiveisSaida, jogador, idPeao, dado);
 
-                idPeao=InformeDisponiveisEId(jogador, disponiveisSaida);
+                idPeao=InformeDisponiveisEId(Jogador jogador, int indexPosicao, int[] disponiveis, int[] disponiveisSaida, int idPeao, int posicao, Tabuleiro tabuleiro, int qntJgd, int dado, int[] casasSeguras, int contQntdDisponiveis, int contQntdDisponiveisSaida, jogador, idPeao, dado);
                 //idPeao = int.Parse(Console.ReadLine());
                 Console.WriteLine($"\nMovimento do jogador {jogador.Nome}");
-                EntrarJogo(jogador, idPeao);
+                EntrarJogo(Jogador jogador, int indexPosicao, int[] disponiveis, int[] disponiveisSaida, int idPeao, int posicao, Tabuleiro tabuleiro, int qntJgd, int dado, int[] casasSeguras, int contQntdDisponiveis, int contQntdDisponiveisSaida, jogador, idPeao, dado);
             }
             else if (resposta == 'n')
             {
-                MoverPeao(jogador, idPeao, dado);
+                MoverPeao(Jogador jogador, int indexPosicao, int[] disponiveis, int[] disponiveisSaida, int idPeao, int posicao, Tabuleiro tabuleiro, int qntJgd, int dado, int[] casasSeguras, int contQntdDisponiveis, int contQntdDisponiveisSaida, jogador, idPeao, dado);
 
             }
             else
@@ -197,7 +230,7 @@ namespace TrabalhoPráticoATP
         }
 
 
-        static bool VerificaCaptura(Jogador jogador,Tabuleiro tabuleiro, int idPeao, int qntJgd)
+        static bool VerificaCaptura(Jogador jogador, int[] disponiveis, int[] disponiveisSaida, int idPeao, int posicao, Tabuleiro tabuleiro, int qntJgd, int dado, int[] casasSeguras, int contQntdDisponiveis, int contQntdDisponiveisSaida)
         {
 
             for (int i =0; i < qntJgd; i++)
@@ -225,7 +258,7 @@ namespace TrabalhoPráticoATP
             return false;
         }
 
-        static bool VerificaCasaSegura(int[] casasSeguras, Jogador jogador, int idPeao)
+        static bool VerificaCasaSegura(Jogador jogador, int[] disponiveis, int[] disponiveisSaida, int idPeao, Tabuleiro tabuleiro, int qntJgd, int dado, int[] casasSeguras, int contQntdDisponiveis, int contQntdDisponiveisSaida)
         {
             
             foreach(int posicao in casasSeguras)
@@ -241,15 +274,15 @@ namespace TrabalhoPráticoATP
             
         }
 
-        static bool VerificaCapturaECasaSegura(int[] casasSeguras, Jogador jogador, int idPeao, Tabuleiro tabuleiro, int qntJgd)
+        static bool VerificaCapturaECasaSegura(Jogador jogador, int[] disponiveis, int[] disponiveisSaida, int idPeao, int posicao, Tabuleiro tabuleiro, int qntJgd, int dado, int[] casasSeguras, int contQntdDisponiveis, int contQntdDisponiveisSaida)
         {
-            if (VerificaCasaSegura(casasSeguras, jogador, idPeao))
+            if (VerificaCasaSegura(Jogador jogador, int indexPosicao, int[] disponiveis, int[] disponiveisSaida, int idPeao, int posicao, Tabuleiro tabuleiro, int qntJgd, int dado, int[] casasSeguras, int contQntdDisponiveis, int contQntdDisponiveisSaida, jogador, idPeao, dado))
             {
                 return false;
             }
             else
             {
-                if (VerificaCaptura(jogador, tabuleiro, idPeao, qntJgd))
+                if (VerificaCaptura(Jogador jogador, int indexPosicao, int[] disponiveis, int[] disponiveisSaida, int idPeao, int posicao, Tabuleiro tabuleiro, int qntJgd, int dado, int[] casasSeguras, int contQntdDisponiveis, int contQntdDisponiveisSaida, jogador, idPeao, dado))
                 {
                     return true;
                 }
@@ -261,7 +294,7 @@ namespace TrabalhoPráticoATP
             }
         }
 
-        static void UmPeaoDadoSeis(Jogador jogador, int[] disponiveis, int[] disponiveisSaida, int dado, Tabuleiro tabuleiro, int qntJgd)
+        static void UmPeaoDadoSeis(Jogador jogador, int indexPosicao, int[] disponiveis, int[] disponiveisSaida, int posicao, Tabuleiro tabuleiro, int qntJgd, int dado, int[] casasSeguras, int contQntdDisponiveis, int contQntdDisponiveisSaida)
         {
             int idPeao = 0;
             Console.WriteLine("\nDeseja retirar mais algum peão da casa? Digite 's' ou 'n':");
@@ -269,9 +302,9 @@ namespace TrabalhoPráticoATP
             if (resposta == 's')
             {
 
-                int qntdDisponiveis = PeoesDisponiveisSaida(jogador, disponiveisSaida);
+                int qntdDisponiveis = PeoesDisponiveisSaida(Jogador jogador, int indexPosicao, int[] disponiveis, int[] disponiveisSaida, int idPeao, int posicao, Tabuleiro tabuleiro, int qntJgd, int dado, int[] casasSeguras, int contQntdDisponiveis, int contQntdDisponiveisSaida, jogador, idPeao, dado);
 
-                idPeao=InformeDisponiveisEId(jogador, disponiveisSaida);
+                idPeao=InformeDisponiveisEId(Jogador jogador, int indexPosicao, int[] disponiveis, int[] disponiveisSaida, int idPeao, int posicao, Tabuleiro tabuleiro, int qntJgd, int dado, int[] casasSeguras, int contQntdDisponiveis, int contQntdDisponiveisSaida, jogador, idPeao, dado);
 
                 //idPeao = int.Parse(Console.ReadLine());
                 Console.WriteLine($"\nMovimento do jogador {jogador.Nome}");
@@ -281,7 +314,7 @@ namespace TrabalhoPráticoATP
                 if (dado == 6)
                 {
 
-                    RetiraMaisPeao(jogador, disponiveisSaida, idPeao, dado);
+                    RetiraMaisPeao(Jogador jogador, int indexPosicao, int[] disponiveis, int[] disponiveisSaida, int idPeao, int posicao, Tabuleiro tabuleiro, int qntJgd, int dado, int[] casasSeguras, int contQntdDisponiveis, int contQntdDisponiveisSaida, jogador, idPeao, dado);
                     jogador.LancarDado();
                     Console.WriteLine($"\nDado jogado pelo jogador {jogador.Nome}: {dado}");
 
@@ -291,13 +324,13 @@ namespace TrabalhoPráticoATP
                     }
                     else
                     {
-                        MoverPeao(jogador, idPeao, dado);
+                        MoverPeao(Jogador jogador, int indexPosicao, int[] disponiveis, int[] disponiveisSaida, int idPeao, int posicao, Tabuleiro tabuleiro, int qntJgd, int dado, int[] casasSeguras, int contQntdDisponiveis, int contQntdDisponiveisSaida, jogador, idPeao, dado);
                     }
 
                 }
                 else
                 {
-                    MoverPeao(jogador, idPeao, dado);
+                    MoverPeao(Jogador jogador, int indexPosicao, int[] disponiveis, int[] disponiveisSaida, int idPeao, int posicao, Tabuleiro tabuleiro, int qntJgd, int dado, int[] casasSeguras, int contQntdDisponiveis, int contQntdDisponiveisSaida, jogador, idPeao, dado);
                 }
 
             }
@@ -313,7 +346,7 @@ namespace TrabalhoPráticoATP
                     }
                 }
 
-                MoverPeao(jogador, idPeao, dado);
+                MoverPeao(Jogador jogador, int indexPosicao, int[] disponiveis, int[] disponiveisSaida, int idPeao, int posicao, Tabuleiro tabuleiro, int qntJgd, int dado, int[] casasSeguras, int contQntdDisponiveis, int contQntdDisponiveisSaida, jogador, idPeao, dado);
 
             }
             else
@@ -323,7 +356,7 @@ namespace TrabalhoPráticoATP
         }
 
 
-        static void UmPeaoDadoMenosSeis(int idPeao, Jogador jogador, int[] disponiveis, int dado)
+        static void UmPeaoDadoMenosSeis(Jogador jogador, int[] disponiveis, int[] disponiveisSaida, int idPeao, int posicao, Tabuleiro tabuleiro, int qntJgd, int dado, int[] casasSeguras, int contQntdDisponiveis, int contQntdDisponiveisSaida)
         {
             Console.WriteLine($"\nMovimento do jogador {jogador.Nome}");
             
@@ -336,29 +369,29 @@ namespace TrabalhoPráticoATP
                     idPeao = disponiveis[j];
                 }
             }
-            MoverPeao(jogador, idPeao,dado);
+            MoverPeao(Jogador jogador, int indexPosicao, int[] disponiveis, int[] disponiveisSaida, int idPeao, int posicao, Tabuleiro tabuleiro, int qntJgd, int dado, int[] casasSeguras, int contQntdDisponiveis, int contQntdDisponiveisSaida, jogador, idPeao, dado);
            
             
 
         }
 
-        static void MaisDeUmPeaoDadoMenosSeis(Jogador jogador, int contQntdDisponiveis, int idPeao, int dado, int[] disponiveis)
+        static void MaisDeUmPeaoDadoMenosSeis(Jogador jogador, int[] disponiveis, int[] disponiveisSaida, int idPeao, int posicao, Tabuleiro tabuleiro, int qntJgd, int dado, int[] casasSeguras, int contQntdDisponiveis, int contQntdDisponiveisSaida)
         {
-            contQntdDisponiveis = PeoesDisponiveis(jogador, disponiveis);
-            idPeao = InformeDisponiveisEId(jogador, disponiveis);
+            contQntdDisponiveis = PeoesDisponiveis(Jogador jogador, int indexPosicao, int[] disponiveis, int[] disponiveisSaida, int idPeao, int posicao, Tabuleiro tabuleiro, int qntJgd, int dado, int[] casasSeguras, int contQntdDisponiveis, int contQntdDisponiveisSaida, jogador, idPeao, dado);
+            idPeao = InformeDisponiveisEId(Jogador jogador, int indexPosicao, int[] disponiveis, int[] disponiveisSaida, int idPeao, int posicao, Tabuleiro tabuleiro, int qntJgd, int dado, int[] casasSeguras, int contQntdDisponiveis, int contQntdDisponiveisSaida, jogador, idPeao, dado);
             //idPeao = int.Parse(Console.ReadLine());
             Console.WriteLine($"\nMovimento do jogador {jogador.Nome}");
 
             int posicaoPeao = jogador.VetPeao[idPeao - 1].Posicao;
-            int indexPosicao = IndexVetor(idPeao, posicaoPeao, jogador);
+            int indexPosicao = IndexVetor(Jogador jogador, int indexPosicao, int[] disponiveis, int[] disponiveisSaida, int idPeao, int posicao, Tabuleiro tabuleiro, int qntJgd, int dado, int[] casasSeguras, int contQntdDisponiveis, int contQntdDisponiveisSaida, jogador, idPeao, dado);
 
             if (indexPosicao > 50)
             {
-                RetaFinal(jogador, dado, idPeao, indexPosicao, contQntdDisponiveis, disponiveis);
+                RetaFinal(Jogador jogador, int indexPosicao, int[] disponiveis, int[] disponiveisSaida, int idPeao, int posicao, Tabuleiro tabuleiro, int qntJgd, int dado, int[] casasSeguras, int contQntdDisponiveis, int contQntdDisponiveisSaida, jogador, idPeao, dado);
             }
             else
             {
-                MoverPeao(jogador, idPeao, dado);
+                MoverPeao(Jogador jogador, int indexPosicao, int[] disponiveis, int[] disponiveisSaida, int idPeao, int posicao, Tabuleiro tabuleiro, int qntJgd, int dado, int[] casasSeguras, int contQntdDisponiveis, int contQntdDisponiveisSaida, jogador, idPeao, dado);
             }
 
         }
@@ -367,7 +400,7 @@ namespace TrabalhoPráticoATP
 
         
 
-        static void Jogo(Jogador jogador,Tabuleiro tabuleiro, int[] disponiveis, int[] disponiveisSaida, int dado, int contQntdDisponiveis, int contQntdDisponiveisSaida,)
+        static void Jogo(Jogador jogador, int[] disponiveis, int[] disponiveisSaida, int idPeao, int posicao, Tabuleiro tabuleiro, int qntJgd, int dado, int[] casasSeguras, int contQntdDisponiveis, int contQntdDisponiveisSaida)
         {
             jogador.LancarDado();
             contQntdDisponiveis = PeoesDisponiveis(jogador, disponiveis);
@@ -408,7 +441,7 @@ namespace TrabalhoPráticoATP
             }
         }
 
-        static void RetaFinal(Jogador jogador, int dado, int idPeao, int indexPosicao, int contQntdDisponiveis, int[] disponiveis)
+        static void RetaFinal(Jogador jogador, int indexPosicao, int[] disponiveis, int[] disponiveisSaida, int idPeao, int posicao, Tabuleiro tabuleiro, int qntJgd, int dado, int[] casasSeguras, int contQntdDisponiveis, int contQntdDisponiveisSaida)
         {
             if (dado <= (jogador.VetPeao[idPeao - 1].vetP.Length - indexPosicao))
             {
@@ -459,73 +492,73 @@ namespace TrabalhoPráticoATP
 
                             Jogador jogador = tabuleiro.VetJgd[i];
                             int idPeao = 0;
-                            int dado = jogador.LancarDado();
+                            int dado = jogador.LancarDado(Jogador jogador, int indexPosicao, int[] disponiveis, int[] disponiveisSaida, int idPeao, int posicao, Tabuleiro tabuleiro, int qntJgd, int dado, int[] casasSeguras, int contQntdDisponiveis, int contQntdDisponiveisSaida, jogador, idPeao, dado);
                             Console.WriteLine($"\nDado jogado pelo jogador {jogador.Nome}: {dado}");
                             //arq.WriteLine($"\nDado jogado pelo jogador {jogador.Nome}: {dado}\n");
 
-                            contQntdDisponiveisSaida = PeoesDisponiveisSaida(jogador, disponiveisSaida);
-                            contQntdDisponiveis = PeoesDisponiveis(jogador, disponiveis);
+                            contQntdDisponiveisSaida = PeoesDisponiveisSaida(Jogador jogador, int indexPosicao, int[] disponiveis, int[] disponiveisSaida, int idPeao, int posicao, Tabuleiro tabuleiro, int qntJgd, int dado, int[] casasSeguras, int contQntdDisponiveis, int contQntdDisponiveisSaida, jogador, idPeao, dado);
+                            contQntdDisponiveis = PeoesDisponiveis(Jogador jogador, int indexPosicao, int[] disponiveis, int[] disponiveisSaida, int idPeao, int posicao, Tabuleiro tabuleiro, int qntJgd, int dado, int[] casasSeguras, int contQntdDisponiveis, int contQntdDisponiveisSaida, jogador, idPeao, dado);
 
                             if (dado == 6 && contQntdDisponiveisSaida == 4)
                             {
                                 Console.WriteLine($"\nVez de: {jogador.Nome}");
                                 //arq.WriteLine("\nVez de: " + jogador.Nome + "\n");
 
-                                SaidaJogador(jogador, disponiveis, disponiveisSaida, tabuleiro, qntJgd);
-                            while (VerificaCapturaECasaSegura(casasSeguras, jogador, idPeao, tabuleiro, qntJgd))
+                                SaidaJogador(Jogador jogador, int indexPosicao, int[] disponiveis, int[] disponiveisSaida, int idPeao, int posicao, Tabuleiro tabuleiro, int qntJgd, int dado, int[] casasSeguras, int contQntdDisponiveis, int contQntdDisponiveisSaida, jogador, idPeao, dado);
+                            while (VerificaCapturaECasaSegura(Jogador jogador, int indexPosicao, int[] disponiveis, int[] disponiveisSaida, int idPeao, int posicao, Tabuleiro tabuleiro, int qntJgd, int dado, int[] casasSeguras, int contQntdDisponiveis, int contQntdDisponiveisSaida, jogador, idPeao, dado))
                             {
                                 jogador.LancarDado();
-                                contQntdDisponiveis = PeoesDisponiveis(jogador, disponiveis);
+                                contQntdDisponiveis = PeoesDisponiveis(Jogador jogador, int indexPosicao, int[] disponiveis, int[] disponiveisSaida, int idPeao, int posicao, Tabuleiro tabuleiro, int qntJgd, int dado, int[] casasSeguras, int contQntdDisponiveis, int contQntdDisponiveisSaida, jogador, idPeao, dado);
                                 if (dado == 6 && contQntdDisponiveisSaida == 4)
                                 {
                                     Console.WriteLine($"\nVez de: {jogador.Nome}");
 
-                                    SaidaJogador(jogador, disponiveis, disponiveisSaida, tabuleiro, qntJgd);
+                                    SaidaJogador(Jogador jogador, int indexPosicao, int[] disponiveis, int[] disponiveisSaida, int idPeao, int posicao, Tabuleiro tabuleiro, int qntJgd, int dado, int[] casasSeguras, int contQntdDisponiveis, int contQntdDisponiveisSaida, jogador, idPeao, dado);
                                     
 
                                 }
                                 else if (contQntdDisponiveis == 1 && dado < 6)
                                 {
-                                    UmPeaoDadoMenosSeis(idPeao, jogador, disponiveis, dado, qntJgd, tabuleiro);
+                                    UmPeaoDadoMenosSeis(Jogador jogador, int indexPosicao, int[] disponiveis, int[] disponiveisSaida, int idPeao, int posicao, Tabuleiro tabuleiro, int qntJgd, int dado, int[] casasSeguras, int contQntdDisponiveis, int contQntdDisponiveisSaida, jogador, idPeao, dado);
                                 }
                                 else if (contQntdDisponiveis == 1 && dado == 6)
                                 {
-                                    UmPeaoDadoSeis(jogador, disponiveis, disponiveisSaida, dado, tabuleiro, qntJgd);
+                                    UmPeaoDadoSeis(Jogador jogador, int indexPosicao, int[] disponiveis, int[] disponiveisSaida, int idPeao, int posicao, Tabuleiro tabuleiro, int qntJgd, int dado, int[] casasSeguras, int contQntdDisponiveis, int contQntdDisponiveisSaida, jogador, idPeao, dado);
                                 }
                                 else if (contQntdDisponiveis > 1 && dado<6)
                                 {
-                                    contQntdDisponiveis = PeoesDisponiveis(jogador, disponiveis);
-                                    InformeDisponiveis(jogador, disponiveis);
+                                    contQntdDisponiveis = PeoesDisponiveis(Jogador jogador, int indexPosicao, int[] disponiveis, int[] disponiveisSaida, int idPeao, int posicao, Tabuleiro tabuleiro, int qntJgd, int dado, int[] casasSeguras, int contQntdDisponiveis, int contQntdDisponiveisSaida, jogador, idPeao, dado);
+                                    InformeDisponiveis(Jogador jogador, int indexPosicao, int[] disponiveis, int[] disponiveisSaida, int idPeao, int posicao, Tabuleiro tabuleiro, int qntJgd, int dado, int[] casasSeguras, int contQntdDisponiveis, int contQntdDisponiveisSaida, jogador, idPeao, dado);
                                     idPeao = int.Parse(Console.ReadLine());
                                     Console.WriteLine($"\nMovimento do jogador {jogador.Nome}");
 
                                     int posicaoPeao = jogador.VetPeao[idPeao - 1].Posicao;
-                                    int indexPosicao = CompatibilidadePosicaoVetor(idPeao, posicaoPeao, jogador);
+                                    int indexPosicao = CompatibilidadePosicaoVetor(Jogador jogador, int indexPosicao, int[] disponiveis, int[] disponiveisSaida, int idPeao, int posicao, Tabuleiro tabuleiro, int qntJgd, int dado, int[] casasSeguras, int contQntdDisponiveis, int contQntdDisponiveisSaida, jogador, idPeao, dado);
 
                                     if (indexPosicao > 50)
                                     {
-                                        RetaFinal(jogador, dado, idPeao, indexPosicao, contQntdDisponiveis, disponiveis);
+                                        RetaFinal(Jogador jogador, int indexPosicao, int[] disponiveis, int[] disponiveisSaida, int idPeao, int posicao, Tabuleiro tabuleiro, int qntJgd, int dado, int[] casasSeguras, int contQntdDisponiveis, int contQntdDisponiveisSaida, jogador, idPeao, dado);
                                     }
                                     else
                                     {
-                                        MoverPeao(jogador, idPeao, dado);
+                                        MoverPeao(Jogador jogador, int indexPosicao, int[] disponiveis, int[] disponiveisSaida, int idPeao, int posicao, Tabuleiro tabuleiro, int qntJgd, int dado, int[] casasSeguras, int contQntdDisponiveis, int contQntdDisponiveisSaida, jogador, idPeao, dado);
                                     }
                                 }
                             }
                         }
                             else if (contQntdDisponiveis == 1 && dado < 6)
                             {
-                                UmPeaoDadoMenosSeis(idPeao, jogador, disponiveis, dado, qntJgd, tabuleiro);
+                                UmPeaoDadoMenosSeis(Jogador jogador, int indexPosicao, int[] disponiveis, int[] disponiveisSaida, int idPeao, int posicao, Tabuleiro tabuleiro, int qntJgd, int dado, int[] casasSeguras, int contQntdDisponiveis, int contQntdDisponiveisSaida, jogador, idPeao, dado);
                                 
                                 
                             }
                             else if (contQntdDisponiveis == 1 && dado == 6)
                             {
-                                UmPeaoDadoSeis(jogador, disponiveis, disponiveisSaida, dado, tabuleiro, qntJgd);
+                                UmPeaoDadoSeis(Jogador jogador, int indexPosicao, int[] disponiveis, int[] disponiveisSaida, int idPeao, int posicao, Tabuleiro tabuleiro, int qntJgd, int dado, int[] casasSeguras, int contQntdDisponiveis, int contQntdDisponiveisSaida, jogador, idPeao, dado);
                             }
                             else if (contQntdDisponiveis > 1)
                             {
-                                MaisDeUmPeao(jogador, contQntdDisponiveis, idPeao,dado, disponiveis);
+                                MaisDeUmPeao(Jogador jogador, int indexPosicao, int[] disponiveis, int[] disponiveisSaida, int idPeao, int posicao, Tabuleiro tabuleiro, int qntJgd, int dado, int[] casasSeguras, int contQntdDisponiveis, int contQntdDisponiveisSaida, jogador, idPeao, dado);
 
 
                             }
@@ -535,7 +568,7 @@ namespace TrabalhoPráticoATP
 
                         rodada++;
 
-                    } while (!Vitoria(tabuleiro, qntJgd));
+                    } while (!Vitoria(Jogador jogador, int indexPosicao, int[] disponiveis, int[] disponiveisSaida, int idPeao, int posicao, Tabuleiro tabuleiro, int qntJgd, int dado, int[] casasSeguras, int contQntdDisponiveis, int contQntdDisponiveisSaida, jogador, idPeao, dado));
 
                 }
 
