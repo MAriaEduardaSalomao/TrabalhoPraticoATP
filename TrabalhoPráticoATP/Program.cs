@@ -14,38 +14,6 @@ namespace TrabalhoPráticoATP
     internal class Program
     {
 
-        //static int chamaMetodos(Jogador jogador, int[] disponiveis, int[] disponiveisSaida, int idPeao, int posicao, Tabuleiro tabuleiro, int qntJgd, int dado, int[] casasSeguras, int contQntdDisponiveis, int contQntdDisponiveisSaida)
-        //{
-
-
-
-
-
-        //    PeoesDisponiveis(Jogador jogador, int[] disponiveis);
-        //    PeoesDisponiveisSaida(Jogador jogador, int[] disponiveisSaida);
-        //    IndexVetor(int idPeao, int posicao, Jogador jogador);
-        //    Vitoria(Tabuleiro tabuleiro, int qntJgd);
-        //    InformeDisponiveisEId(Jogador jogador, int[] disponiveis);
-        //    EntrarJogo(Jogador jogador, int idPeao);
-        //    MoverPeao(Jogador jogador, int idPeao, int dado);
-        //    SaidaJogador(Jogador jogador, int[] disponiveis, int[] disponiveisSaida, Tabuleiro tabuleiro, int qntJgd);
-        //    RetiraMaisPeao(Jogador jogador, int[] disponiveisSaida, int idPeao, int dado);
-        //    VerificaCaptura(Jogador jogador, Tabuleiro tabuleiro, int idPeao, int qntJgd);
-        //    VerificaCasaSegura(int[] casasSeguras, Jogador jogador, int idPeao);
-        //    VerificaCapturaECasaSegura(int[] casasSeguras, Jogador jogador, int idPeao, Tabuleiro tabuleiro, int qntJgd);
-        //    UmPeaoDadoSeis(Jogador jogador, int[] disponiveis, int[] disponiveisSaida, int dado, Tabuleiro tabuleiro, int qntJgd);
-        //    UmPeaoDadoMenosSeis(int idPeao, Jogador jogador, int[] disponiveis, int dado);
-        //    MaisDeUmPeaoDadoMenosSeis(Jogador jogador, int contQntdDisponiveis, int idPeao, int dado, int[] disponiveis);
-        //    Jogo(Jogador jogador, Tabuleiro tabuleiro, int[] disponiveis, int[] disponiveisSaida, int dado, int contQntdDisponiveis, int contQntdDisponiveisSaida,);
-        //    RetaFinal(Jogador jogador, int dado, int idPeao, int indexPosicao, int contQntdDisponiveis, int[] disponiveis);
-
-        // (Jogador jogador, int indexPosicao, int[] disponiveis, int[] disponiveisSaida, int idPeao, int posicao, Tabuleiro tabuleiro, int qntJgd, int dado, int[] casasSeguras, int contQntdDisponiveis, int contQntdDisponiveisSaida)
-
-
-        //}
-
-
-
 
         static int PeoesDisponiveis(Jogador jogador, int[] disponiveis, int[] disponiveisSaida, int idPeao, int posicao, Tabuleiro tabuleiro, int qntJgd, int dado, int[] casasSeguras, int contQntdDisponiveisSaida)
         {
@@ -573,7 +541,41 @@ namespace TrabalhoPráticoATP
                 }
 
 
-                
+
+                // console.WriteLine("Criando registros do jogo.");
+
+                // try
+                // {
+                //     StreamWriter arquivoLog = new StreamWriter("arquivoLog.txt", true, Encoding.UTF8);
+                //     // O arquivo com os registros do jogo foi criado. Não coloquei um caminho certo, entao ele vai ser criado no mesmo lugar em que o código estiver, provavelmente nas pastas "bin/debug/".
+
+                //     // Começa aqui a série de C.WL() para redigir o código todo.
+                //     // arquivoLog.WriteLine("Informe o número do peão que deseja mover\nNúmeros Disponíveis:");
+                //     // arquivoLog.WriteLine($"Opçao escolhida:{idpeao}");
+                //     // Console.WriteLine("Informe o número do peão que deseja mover\nNúmeros Disponíveis:");
+                //     // Console.WriteLine($"\nMovimento do jogador {jogador.Nome}");
+                //     // Console.WriteLine($"\nPosição atual do peão {jogador.VetPeao[idPeao - 1].Id} {jogador.Cor} : {jogador.VetPeao[idPeao - 1].Posicao}");
+                //     // Console.WriteLine($"\nDado jogado pelo jogador {jogador.Nome}: {dado}");
+                //     // Console.WriteLine("Quantidade de 6's atingida!\nPassa a vez");
+                //     // Console.WriteLine("\nDeseja retirar mais algum peão da casa? Digite 's' ou 'n':");
+                //     // Console.WriteLine($"\nMovimento do jogador {jogador.Nome}");
+
+
+                //     arquivoLog.Write(Main);
+
+                //     //Fecha o arquivo
+                //     arquivoLog.Close();
+                //     Console.WriteLine("Arquivo com os registros do jogo foi criado ou atualiado!");
+                // }
+                // catch (Exception e)
+                // { Console.WriteLine("Exception: " + e.Message);
+                // } catch (FileNotFoundException e)
+                // { Console.WriteLine("O arquivo não foi encontrado: " + e.Message);
+                // } catch (DirectoryNotFoundException e)
+                // { Console.WriteLine("O diretório não foi encontrado: " + e.Message);
+                // } catch (IOException e)
+                // { Console.WriteLine("O arquivo não pode ser aberto: " + e.Message);
+                // } // Todas as mensagens em caso de erro.
 
             
             
